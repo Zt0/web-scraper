@@ -1,0 +1,52 @@
+name: CI Tests
+run-name: ${{ github.workflow }}-${{ github.actor }}-${{ github.event.head_commit.message}}
+on:
+  push:
+    branches:
+      - ci_cd
+      - feat/authTests
+      - refactoring/initialVersion
+  pull_request:
+    branches:
+      - master
+jobs:
+  run-integration-tests:
+    runs-on: ubuntu-latest
+    env:
+      DB_DATABASE: bep_local
+      DB_USER: root
+      DB_PASSWORD: root
+    steps:
+      - name: Set up MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install Dependencies
+        run: |
+          yarn install
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo API_KEY=${{ secrets.DB_SQL_LOCAL_HOST }} >> .env
+          echo DB_SQL_LOCAL_HOST=${{ secrets.DB_SQL_LOCAL_HOST }} >> .env
+          echo DB_SQL_LOCAL_PORT=${{ secrets.DB_SQL_LOCAL_PORT }} >> .env
+          echo DB_SQL_NAME=${{ secrets.DB_SQL_NAME }} >> .env
+          echo DB_SQL_USERNAME=${{ secrets.DB_SQL_USERNAME_CI_TEST }} >> .env
+          echo DB_SQL_PASSWORD=${{ secrets.DB_SQL_PASSWORD_CI_TEST }} >> .env
+          echo JWT_ACCESS_TOKEN_SECRET=${{ secrets.JWT_ACCESS_TOKEN_SECRET }} >> .env
+          echo JWT_REFRESH_TOKEN_SECRET=${{ secrets.JWT_REFRESH_TOKEN_SECRET }} >> .env
+          echo REFRESH_TOKEN_DURATION=${{ secrets.REFRESH_TOKEN_DURATION }} >> .env
+          echo ACCESS_TOKEN_DURATION=${{ secrets.ACCESS_TOKEN_DURATION }} >> .env 
+          echo SMTP_HOST=${{ secrets.SMTP_HOST }} >> .env 
+          echo SMTP_API_KEY=${{ secrets.SMTP_API_KEY }} >> .env 
+          echo SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }} >> .env 
+          cat .env
+
+      - name: Run tests
+        run: yarn test:cov

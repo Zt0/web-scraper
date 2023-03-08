@@ -1,0 +1,57 @@
+{
+  "preset": "ts-jest",
+  "rootDir": ".",
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "testEnvironment": "node",
+  "testRegex": ".*\\.test\\.ts$",
+  "collectCoverageFrom": [
+    "**/*.(t|j)s"
+  ],
+  "transform": {
+    "^.+\\.(t|j)s$": [
+      "ts-jest",
+      {
+        "isolatedModules": true
+      }
+    ]
+  },
+  "coverageDirectory": "./coverage",
+  "roots": [
+    "<rootDir>/apps/",
+    "<rootDir>/libs/"
+  ],
+  "testTimeout": 15000,
+  "globalSetup": "./libs/common/test/jest-global-setup.ts",
+  "globalTeardown": "./libs/common/test/jest-global-teardown.ts",
+  "moduleNameMapper": {
+    "^@libs/common/test$": "<rootDir>/libs/common/test",
+    "^@libs/common/test/(.*)$": "<rootDir>/libs/common/test/$1",
+    "^@libs/common$": "<rootDir>/libs/common/src",
+    "^@libs/common/(.*)$": "<rootDir>/libs/common/src/$1",
+    "^@apps/users$": "<rootDir>/apps/users/src",
+    "^@apps/users/(.*)$": "<rootDir>/apps/users/src/$1",
+    "^@dataSource$": "<rootDir>/data-source.ts"
+  },
+  "coveragePathIgnorePatterns": [
+    "node_modules",
+    "dist",
+    "libs/common/test",
+    "libs/common/src/exception-filters",
+    "libs/common/src/bootstrap.ts",
+    "libs/common/src/configuration/swagger-ui.ts",
+    "libs/common/src/server.ts",
+    "./apps/users/src/main.ts"
+  ],
+  "coverageThreshold": {
+    "./apps/users/src": {
+      "branches": 80,
+      "functions": 80,
+      "lines": 80,
+      "statements": 80
+    }
+  }
+}

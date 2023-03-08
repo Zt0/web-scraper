@@ -1,0 +1,5 @@
+export const USER_NOT_FOUND = 'USER_NOT_FOUND'
+export const GET = 'GET'
+export const CREATE = 'CREATE'
+export const UPDATE = 'UPDATE'
+export const DELETE = 'DELETE'
