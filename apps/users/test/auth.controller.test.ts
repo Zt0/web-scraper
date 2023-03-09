@@ -63,7 +63,6 @@ describe('AuthController', () => {
 
   let otp: number
   let verifyOtpToken: string
-  //todo update test when EI arrives)
 
   describe('register', () => {
     it('success to register user auth (POST)', async () => {
@@ -158,7 +157,6 @@ describe('AuthController', () => {
 
   describe('forgot-password', () => {
     it('fail to get otp token (POST) | user with received email not found', async () => {
-      //todo change to auth not found, if needed
       const UserResponse = await request(server)
         .post('/v1/user')
         .set({Authorization: `Bearer ${JWTFixture.valid}`})

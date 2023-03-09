@@ -70,7 +70,6 @@ export class AuthController {
 
   @Post('verify-otp')
   @HttpCode(HttpStatus.OK)
-  // @Recaptcha() //todo
   @ApiResponse({type: VerifyOtpTokenDTO})
   async verifyOTP(@Body() {email, otp}: VerifyDTO): Promise<ResponseWrapper<VerifyOtpTokenDTO>> {
     const verifyOtpToken = await this.authService.verifyOTP(email, otp)

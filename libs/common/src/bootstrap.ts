@@ -26,9 +26,8 @@ export async function bootstrap(config: IBootstrapApplicationConfig): Promise<IN
       whitelist: true,
       forbidNonWhitelisted: true,
       forbidUnknownValues: true,
-      exceptionFactory: (errors: ValidationError[]): DtoValidationException => {
-        return new DtoValidationException(errors)
-      },
+      exceptionFactory: (errors: ValidationError[]): DtoValidationException =>
+        new DtoValidationException(errors),
     }),
   )
 

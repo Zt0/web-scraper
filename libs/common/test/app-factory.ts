@@ -39,9 +39,8 @@ export async function generateTestApp(
       whitelist: true,
       forbidNonWhitelisted: true,
       forbidUnknownValues: true,
-      exceptionFactory: (errors: ValidationError[]): DtoValidationException => {
-        return new DtoValidationException(errors)
-      },
+      exceptionFactory: (errors: ValidationError[]): DtoValidationException =>
+        new DtoValidationException(errors),
     }),
   )
 
