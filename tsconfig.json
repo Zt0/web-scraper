@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@libs/common/test": ["libs/common/test"],
+      "@libs/common/test/*": ["libs/common/test/*"],
+      "@libs/common": ["libs/common/src"],
+      "@libs/common/*": ["libs/common/src/*"],
+      "@apps/core": ["apps/core/src"],
+      "@apps/core/*": ["apps/core/src/*"],
+      "@apps/users": ["apps/users/src"],
+      "@apps/users/*": ["apps/users/src/*"],
+      "@config/*": ["env-config/*"],
+      "@dataSource": ["data-source.ts"]
+    }
+  }
+}
