@@ -26,10 +26,10 @@ import {
 } from '@libs/common/test/fixtures/auth.fixture'
 import {HttpStatus} from '@nestjs/common'
 import {JwtAuthGuard} from '@libs/common/guards/jwt-auth.guard'
-import {Gender} from '@libs/common/enums/user'
 import {sendMail} from '@libs/common/test/utils/send-mail'
 import {AuthRepository, OtpCodesRepository} from '@libs/common/repositories'
 import {activeOtpCode, expiredOtpCode} from '@libs/common/test/fixtures/otp-codes.fixture'
+import {Gender} from '@libs/common/enums/user'
 
 const spyJwtServiceSign = jest.spyOn(JwtService.prototype, 'sign')
 spyJwtServiceSign.mockImplementation(jwtSign)
@@ -131,7 +131,7 @@ describe('AuthController', () => {
   describe('refresh-token', () => {
     it('fail to get access token from refresh token (POST) | invalid signature', async () => {
       const res = await request(server).post(`${authV1}/refresh-token`).send({
-        refreshToken: JWTFixture.resetPasswordSignature,
+        refreshToken: JWTFixture.getAccessTokenFailure,
       })
       expect(res.status).toBe(HttpStatus.INTERNAL_SERVER_ERROR)
       expect(res.body.status.message).toBe(REFRESH_TOKEN)

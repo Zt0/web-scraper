@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {DataSource} from 'typeorm'
 import {DataSourceOptions} from 'typeorm/data-source/DataSourceOptions'
 

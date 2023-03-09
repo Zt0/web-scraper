@@ -9,4 +9,5 @@ export interface JWTData {
   nonExistent: string
   invalid: string
   resetPasswordSignature: string
+  getAccessTokenFailure: string
 }

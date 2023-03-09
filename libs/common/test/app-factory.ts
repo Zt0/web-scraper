@@ -2,9 +2,7 @@ import {DynamicModule, ValidationError, ValidationPipe} from '@nestjs/common'
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify'
 import {Test, TestingModule} from '@nestjs/testing'
 import {DtoValidationException} from '@libs/common/exceptions'
-// import cookie, {FastifyCookieOptions} from '@fastify/cookie'
-// import {Reflector} from '@nestjs/core'
-// import {SessionRenewalInterceptor} from '@libs/common/interceptors'
+import {AllExceptionsFilter} from '@libs/common/exception-filters/all-exceptions.filter'
 
 export class TestPortProvider {
   private static instance: TestPortProvider
@@ -46,6 +44,8 @@ export async function generateTestApp(
       },
     }),
   )
+
+  app.useGlobalFilters(new AllExceptionsFilter(true))
 
   const server = app.getHttpServer()
 
