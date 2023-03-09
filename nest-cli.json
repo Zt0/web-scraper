@@ -30,6 +30,15 @@
         ],
         "tsConfigPath": "apps/users/tsconfig.app.json"
       }
+    },
+    "scraper": {
+      "type": "application",
+      "root": "apps/scraper",
+      "entryFile": "main",
+      "sourceRoot": "apps/scraper/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/scraper/tsconfig.app.json"
+      }
     }
   }
 }

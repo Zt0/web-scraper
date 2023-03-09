@@ -34,6 +34,8 @@
     "^@libs/common/(.*)$": "<rootDir>/libs/common/src/$1",
     "^@apps/users$": "<rootDir>/apps/users/src",
     "^@apps/users/(.*)$": "<rootDir>/apps/users/src/$1",
+    "^@apps/scraper": "<rootDir>/apps/scraper/src",
+    "^@apps/scraper/(.*)$": "<rootDir>/apps/scraper/src/$1",
     "^@dataSource$": "<rootDir>/data-source.ts"
   },
   "coveragePathIgnorePatterns": [
@@ -45,9 +47,16 @@
     "libs/common/src/configuration/swagger-ui.ts",
     "libs/common/src/server.ts",
     "./apps/users/src/main.ts"
+    "./apps/scraper/src/main.ts"
   ],
   "coverageThreshold": {
     "./apps/users/src": {
+      "branches": 80,
+      "functions": 80,
+      "lines": 80,
+      "statements": 80
+    },
+    "./apps/scraper/src": {
       "branches": 80,
       "functions": 80,
       "lines": 80,

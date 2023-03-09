@@ -1,5 +1,5 @@
 {
-  "name": "bep",
+  "name": "scraper",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -9,7 +9,8 @@
     "prebuild": "rimraf dist",
     "build:service": "nest build $SERVICE && cp ./package.json ./dist/apps/$SERVICE/ && cp ./.env ./dist/apps/$SERVICE/",
     "build:users": "SERVICE=users yarn run build:service",
-    "build:all": "concurrently --max-processes 7 \"yarn run build:users\"",
+    "build:scraper": "SERVICE=scraper yarn run build:service",
+    "build:all": "concurrently --max-processes 7 \"yarn run build:users\" \"yarn run build:scraper\"",
     "format": "prettier --write ./**/*.ts --fix",
     "start": "nest start",
     "start:dev": "nest start --watch",
